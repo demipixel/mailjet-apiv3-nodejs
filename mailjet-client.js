@@ -44,9 +44,6 @@ const _path = require('path')
 const JSONb = require('json-bigint')({ storeAsString: true })
 const version = require('./package.json').version
 
-/* Extend superagent request with proxy method */
-require('superagent-proxy')(request)
-
 /*
  * MailjetClient constructor.
  *
@@ -277,9 +274,6 @@ MailjetClient.prototype.httpRequest = function (method, url, data, callback, per
     req.auth(this.apiKey, this.apiSecret)
   }
 
-  if (this.options.proxyUrl) {
-    req = req.proxy(this.options.proxyUrl)
-  }
   if (this.options.timeout) {
     req = req.timeout(this.options.timeout)
   }
